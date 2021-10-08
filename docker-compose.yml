@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  builder:
+    image: xnat/model-datacsv:latest
+    volumes:
+        - nfsMount:/input
+volumes:
+    nfsMount:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: addr=nfs-mirr-dev.nrg.wustl.edu,ro,nosuid,relatime,vers=4.0,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys
+            device: ":/opt/mirir_beegfs/archive/COV_ADM_MORT/arc001/"

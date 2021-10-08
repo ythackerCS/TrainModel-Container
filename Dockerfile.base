@@ -1,0 +1,9 @@
+FROM tensorflow/tensorflow
+RUN pip install --upgrade pip
+RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN pip install pandas numpy matplotlib opencv-python python-math pydicom tensorflow scikit-learn tensorflow-addons pylibjpeg pylibjpeg-libjpeg python-gdcm tqdm
+COPY ./workspace /workspace/
+WORKDIR /workspace
+RUN groupadd -g 1248610 appgroup && useradd -u 1957785 -g appgroup -m appuser
+USER appuser
